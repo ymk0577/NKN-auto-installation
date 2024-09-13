@@ -11,7 +11,8 @@ Reference website/document:
 3. Determine whether the NKN container based on Docker already exists. If not, the container is automatically created.
 4. If the NKN container already exists, the old version is automatically deleted and the latest version is re-pulled.
 5. The NKN container will use the HOST network configuration and set automatic start/restart.
-6. Use custom parameters through this script to set the beneficiary wallet.
+6. During the installation process, users are required to prepare a custom NKN configuration file in advance, namely the config.json file.
+   It is used to adjust parameters such as beneficiary wallet/blockchain mode/log mode, etc.
 7. Automatically create the NKN folder and automatically set the mapping NKN data folder.
 8. During the installation process, you will be required to enter the wallet file and password, which need to be prepared in advance.
 
