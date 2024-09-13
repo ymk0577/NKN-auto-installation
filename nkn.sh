@@ -85,7 +85,7 @@ check_virt(){
 # 建立钱包和参数配置文件（如无）
 nknconfig()
 {
-  echo " Start detect configuration file...... "
+  green "\n Start detect configuration file......\n "
     if [ ! -d "nkn" ]; then
       mkdir nkn
       else
@@ -98,7 +98,7 @@ nknconfig()
                     if [ -f "nkn/wallet.pswd" ]; then
                       vi nkn/wallet.pswd
                         else
-                          echo" The configuration file step ends. "
+                          green " The configuration file step endss.\n "
                     fi
               fi
         fi
