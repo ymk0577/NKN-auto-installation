@@ -6,7 +6,7 @@ Reference website/document:
 2. https://hub.docker.com/r/nknorg/nkn
 
 # Main features
-1. All programs involved use official sources, without additional additions.
+1. All programs involved use official sources, and the original version has no additions.
 2. Determine whether the Docker program already exists. If not, Docker is automatically installed.
 3. Determine whether the NKN container based on Docker already exists. If not, the container is automatically created.
 4. If the NKN container already exists, the old version is automatically deleted and the latest version is re-pulled.
