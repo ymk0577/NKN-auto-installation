@@ -15,9 +15,6 @@ Reference website/document:
 7. The installation process will automatically create the NKN folder (skip if it already exists) and set the data folder mapping of the NKN container.
 8. Please check the source code for more specific details.
 
-# Script parameter description
-
-
 # Notice
 Please check the code yourself before use to confirm whether it meets your own usage requirements.
 Please note that I am not responsible for any problems that arise from using this script.
