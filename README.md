@@ -1,5 +1,13 @@
 # NKN-auto-installation
-This script is based on the Docker environment and is used to achieve fully automatic one-click deployment of NKN programs.
+This script is used to implement the automatic one-click deployment function of the NKN program.
+
+After execution, NKN will be run based on the Docker container.
+
+After the NKN program is running, it will automatically generate a default configuration file and a new wallet file.
+
+However, the automatically generated configuration file is not suitable for hosts with low storage space and low memory, and the new wallet file cannot be used unless 10 NKN is manually transferred to activate it because it has no ID.
+
+Therefore, the script has a step to detect the NKN data folder before installation. If the NKN folder already exists, it will automatically proceed to the next step; if it does not exist, it will be required to enter the configuration file and wallet file related content.
 
 Reference website/document:
 1. https://github.com/nknorg/nkn
