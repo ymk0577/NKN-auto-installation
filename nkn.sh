@@ -85,25 +85,23 @@ check_virt(){
 # 建立钱包和参数配置文件（如无）
 nknconfig()
 {
-    echo "Start detect configuration file......"
-    if test -f "config.json"
-    then
-        wget -c -t 5 --quiet "https://download.npool.io/linux-${arch_type}.tar.gz" && tar zxvf "linux-${arch_type}.tar.gz" && mv "linux-${arch_type}/npool" ./ && rm -rf "linux-${arch_type}" && rm -f nknd
-       if test -f "wallet.json"
-       then
-            start_shell="${cur_dir}/npool --appkey ${app_key} --wallet ${cur_dir}/wallet.json --password-file ${cur_dir}/wallet.pswd"
-       else
-            start_shell="${cur_dir}/npool --appkey ${app_key}"
-       fi
-        work_dir="${cur_dir}"
-    else
-        wget -c -t 5 --quiet  "https://download.npool.io/linux-${arch_type}.tar.gz" && tar zxvf "linux-${arch_type}.tar.gz"
-        start_shell="${cur_dir}/linux-${arch_type}/npool --appkey ${app_key}"
-        work_dir="${cur_dir}/linux-${arch_type}"
-    fi
-    if [[ "$pruning_mode" == "no-pruning" ]]
-    then
-	start_shell="${start_shell} --pruning none"
+  echo " Start detect configuration file...... "
+    if [ ! -d "nkn" ]; then
+      mkdir nkn
+      else
+        if [ -f "nkn/config.json" ]; then
+          vi nkn/config.json
+            else
+              if [ -f "nkn/wallet.json" ]; then
+                vi nkn/wallet.json
+                  else
+                    if [ -f "nkn/wallet.pswd" ]; then
+                      vi nkn/wallet.pswd
+                        else
+                          echo" The configuration file step ends. "
+                    fi
+              fi
+        fi
     fi
 }
 
@@ -129,7 +127,7 @@ container_build()
 
   # 创建容器
   yellow " Create the nkn container.\n "
-  docker run -d --name $NAME --restart=unless-stopped --net=host nknorg/nkn:$ARCH -v ${PWD}:/nkn/data >/dev/null 2>&1
+  docker run -d --name $NAME --restart=unless-stopped --net=host nknorg/nkn:$ARCH -v /root/nkn:/nkn/data >/dev/null 2>&1
 
   # 创建 Towerwatch
   [[ ! $(docker ps -a) =~ watchtower ]] && yellow " Create TowerWatch.\n " && docker run -d --name watchtower --restart=unless-stopped --net=host -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup >/dev/null 2>&1
