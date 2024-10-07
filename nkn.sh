@@ -85,24 +85,31 @@ check_virt(){
 # 建立钱包和参数配置文件（如无）
 nknconfig()
 {
-  green "\n Start detect configuration file......\n "
-    if [ ! -d "nkn" ]; then
-      mkdir nkn
-      else
-        if [ -f "nkn/config.json" ]; then
-          vi nkn/config.json
-            else
-              if [ -f "nkn/wallet.json" ]; then
-                vi nkn/wallet.json
-                  else
-                    if [ -f "nkn/wallet.pswd" ]; then
-                      vi nkn/wallet.pswd
-                        else
-                          green " The configuration file step endss.\n "
-                    fi
-              fi
-        fi
-    fi
+  yellow "\n Start detect nkn configuration file......\n "
+if test -d "nkn"; then
+  echo "The folder nkn already exists..."
+  else
+  mkdir nkn
+  echo "The folder nkn has been created..."
+fi
+if test -f "nkn/config.json"; then
+  echo "The config.json file already exists..."
+  else
+  vi nkn/config.json
+  echo "The config.json file has been created..."
+fi
+if test -f "nkn/wallet.pswd"; then
+  echo "The config.json file already exists..."
+  else
+  vi nkn/wallet.pswd
+  echo "The wallet.pswd file has been created..."
+fi
+if test -d "nkn" && test -f "nkn/config.json" && test -f "nkn/wallet.pswd"; then
+  green " The nkn configuration file step endss.\n "
+  else
+  red " Re-run nkn configuration check.\n "
+  nknconfig
+fi
 }
 
 # 宿主机安装
