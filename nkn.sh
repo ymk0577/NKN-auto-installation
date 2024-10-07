@@ -134,10 +134,10 @@ container_build()
 
   # 创建容器
   yellow " Create the nkn container.\n "
-  docker run -d --name $NAME --restart=unless-stopped --net=host nknorg/nkn:$ARCH -v /root/nkn:/nkn/data >/dev/null 2>&1
+  docker run --name $NAME -v /root/nkn:/nkn/data --restart unless-stopped --net host -d nknorg/nkn:latest >/dev/null 2>&1
 
   # 创建 Towerwatch
-  [[ ! $(docker ps -a) =~ watchtower ]] && yellow " Create TowerWatch.\n " && docker run -d --name watchtower --restart=unless-stopped --net=host -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup >/dev/null 2>&1
+  [[ ! $(docker ps -a) =~ watchtower ]] && yellow " Create TowerWatch.\n " && docker run --name watchtower --net host --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -d containrrr/watchtower --cleanup --interval 2592000 >/dev/null 2>&1
 }
 
 # 显示结果
